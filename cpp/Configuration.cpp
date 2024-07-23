@@ -1,5 +1,4 @@
 #include "Configuration.h"
-
 void Configuration::validateNotEmpty(const std::string& value, const std::string& fieldName) const {
     if (value.empty()) {
         throw std::invalid_argument(fieldName + " cannot be empty");

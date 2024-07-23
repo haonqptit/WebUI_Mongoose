@@ -6,6 +6,7 @@
 
 class Configuration {
 public:
+
     std::string getUsername() const;
     void setUsername(const std::string& username);
 
