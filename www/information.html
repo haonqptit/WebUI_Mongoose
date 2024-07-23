@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Information</title>
+    <style>
+        /* CSS cho thông tin căn giữa */
+        #information {
+            max-width: 600px; /* Giới hạn chiều rộng của phần thông tin */
+            margin: 0 auto; /* Để căn giữa theo chiều ngang */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #information h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        #information ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #information ul li {
+            margin-bottom: 10px;
+        }
+
+        #information ul li strong {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        #information ul li span {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Control Panel</h1>
+        <ul>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="change_password.html">Change Password</a></li>
+            <li><a href="update_firmware.html">Update Firmware</a></li>
+            <li><a href="information.html">Information</a></li>
+            <li><a href="logfile.html">LogFile</a></li>
+            <li><a href="update_country_codes.html">Update Country Codes</a></li>
+            <li><a href="factory_image.html">Factory Image</a></li>
+        </ul>
+    </nav>
+
+    <div id="information">
+        <h2>Device Information</h2>
+        <ul>
+            <li><strong>Hardware Version:</strong> <span id="hardware_version"></span></li>
+            <li><strong>Software Version:</strong> <span id="software_version"></span></li>
+            <li><strong>FPGA Version:</strong> <span id="fpga_version"></span></li>
+            <li><strong>Model:</strong> <span id="model"></span></li>
+            <li><strong>Serial Number:</strong> <span id="serial_number"></span></li>
+        </ul>
+    </div>
+
+    <script>
+        // JavaScript để lấy dữ liệu từ JSON và điền vào HTML
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                var jsonData = JSON.parse(this.responseText);
+
+                // Lấy các phần tử HTML để điền thông tin
+                var hardwareVersion = document.getElementById('hardware_version');
+                var softwareVersion = document.getElementById('software_version');
+                var fpgaVersion = document.getElementById('fpga_version');
+                var model = document.getElementById('model');
+                var serialNumber = document.getElementById('serial_number');
+
+                // Điền thông tin từ JSON vào các phần tử HTML tương ứng
+                hardwareVersion.textContent = jsonData.information.hardware_version;
+                softwareVersion.textContent = jsonData.information.software_version;
+                fpgaVersion.textContent = jsonData.information.fpga_version;
+                model.textContent = jsonData.information.model;
+                serialNumber.textContent = jsonData.information.serial_number;
+            }
+        };
+        xhr.open("GET", "data.json", true);
+        xhr.send();
+    </script>
+</body>
+</html>

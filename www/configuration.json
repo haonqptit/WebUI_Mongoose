@@ -1,0 +1,25 @@
+{
+  "account_information":{
+    "username":"admin",
+    "password":"123"
+  },
+  "settingsSTA":{
+    "auto":"true",
+    "ip-address":"192.168.1.23",
+    "logging-level":"debug",
+    "wireless-mode":"station",
+    "wireless-SSID":"Phong 401",
+    "wireless-Pass-Phrase":"12345687",
+    "status":"active",
+    "gateway":"192.168.1.255",
+    "dns":"8.8.8.8"
+  },
+  "settingsAP":{
+    "ip-address":"192.168.10.1",
+    "logging-level":"debug",
+    "wireless-mode":"access-point",
+    "wireless-SSID":"Phong 401",
+    "wireless-Pass-Phrase":"123456789",
+    "status":"deactive"
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "information": {
+        "hardware_version": "v1.0",
+        "software_version": "v2.3",
+        "fpga_version": "v1.2",
+        "model": "ABC123",
+        "serial_number": "SN456789",
+        "macAddress": "1b2b5m6b8v"
+    },
+
+  "pathFile": {
+    "home": "/home/root/www/home.html",
+    "login": "/home/root/www/login.html",
+    "settings": "/home/root/www/settings.html",
+    "json": "/home/root/www/configuration.json",
+    "logfile1": "/home/root/www/logfile1.txt",
+    "logfile2": "/home/root/www/logfile2.txt",
+    "logfile3": "/home/root/www/logfile3.txt"
+  }
+}
+

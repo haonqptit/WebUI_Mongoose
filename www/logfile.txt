@@ -1,0 +1,185 @@
+ount_information":{
+    "username":"admin",
+    "password":"123"
+  },
+  "settings":{
+    "ip-address":"192.168.1.14",
+    "logging-level":"info",
+    "wireless-mode":"access-point",
+    "wireless-SSID":"voyance",
+    "wireless-Pass-Phrase":"123456789"
+  },
+  "firmware":{
+    "filename":"baitest1.cpp",
+    "path":"uploads\/baitest1.cpp"
+  }
+}
+[2024-05-02 13:43:23.056] [DET_logger] [info] Saved JSON data to data.json
+[2024-05-02 13:43:23.056] [DET_logger] [info] ip-address: 192.168.1.14
+[2024-05-02 13:43:23.056] [DET_logger] [info] logging-method: 
+[2024-05-02 13:43:23.056] [DET_logger] [info] logging-level: info
+[2024-05-02 13:43:23.056] [DET_logger] [info] wireless-mode: access-point
+[2024-05-02 13:43:23.056] [DET_logger] [info] wireless-SSID: voyance
+[2024-05-02 13:43:23.056] [DET_logger] [info] wireless-Pass-Phrase: 123456789
+[2024-05-02 13:43:23.056] [DET_logger] [info] wl mode: access-point
+[2024-05-02 13:43:25.771] [DET_logger] [info] Switched to Access Point Mode.
+[2024-05-02 13:43:59.061] [DET_logger] [info] Buffer: cmd1
+
+[2024-05-02 13:43:59.061] [DET_logger] [info] bytesRead: 4
+[2024-05-02 13:44:01.061] [DET_logger] [info] Received JSON data:
+[2024-05-02 13:44:01.061] [DET_logger] [info] {
+  "account_information":{
+    "username":"admin",
+    "password":"123"
+  },
+  "settings":{
+    "ip-address":"192.168.1.14",
+    "logging-level":"info",
+    "wireless-mode":"station",
+    "wireless-SSID":"Phong 401",
+    "wireless-Pass-Phrase":"12345687"
+  },
+  "firmware":{
+    "filename":"baitest1.cpp",
+    "path":"uploads\/baitest1.cpp"
+  }
+}
+[2024-05-02 13:44:01.061] [DET_logger] [info] Saved JSON data to data.json
+[2024-05-02 13:44:01.062] [DET_logger] [info] ip-address: 192.168.1.14
+[2024-05-02 13:44:01.062] [DET_logger] [info] logging-method: 
+[2024-05-02 13:44:01.062] [DET_logger] [info] logging-level: info
+[2024-05-02 13:44:01.062] [DET_logger] [info] wireless-mode: station
+[2024-05-02 13:44:01.062] [DET_logger] [info] wireless-SSID: Phong 401
+[2024-05-02 13:44:01.062] [DET_logger] [info] wireless-Pass-Phrase: 12345687
+[2024-05-02 13:44:01.062] [DET_logger] [info] wl mode: station
+[2024-05-02 13:44:02.784] [DET_logger] [info] Switched to Station Mode.
+[2024-05-02 13:44:06.837] [DET_logger] [info] SSID: Phong 401
+BSSID: BC:F4:D4:0C:6A:61
+RSSI: 87/100
+Frequency: 5765 MHz
+Band: 2 GHz
+Security: WPA-PSK
+
+
+[2024-05-02 13:44:33.965] [DET_logger] [info] Buffer: cmd1
+
+[2024-05-02 13:44:33.965] [DET_logger] [info] bytesRead: 4
+[2024-05-02 13:44:35.965] [DET_logger] [info] Received JSON data:
+[2024-05-02 13:44:35.965] [DET_logger] [info] {
+  "account_information":{
+    "username":"admin",
+    "password":"123"
+  },
+  "settings":{
+    "ip-address":"192.168.1.14",
+    "logging-level":"info",
+    "wireless-mode":"access-point",
+    "wireless-SSID":"voyance",
+    "wireless-Pass-Phrase":"123456789"
+  },
+  "firmware":{
+    "filename":"baitest1.cpp",
+    "path":"uploads\/baitest1.cpp"
+  }
+}
+[2024-05-02 13:44:35.965] [DET_logger] [info] Saved JSON data to data.json
+[2024-05-02 13:44:35.965] [DET_logger] [info] ip-address: 192.168.1.14
+[2024-05-02 13:44:35.966] [DET_logger] [info] logging-method: 
+[2024-05-02 13:44:35.966] [DET_logger] [info] logging-level: info
+[2024-05-02 13:44:35.966] [DET_logger] [info] wireless-mode: access-point
+[2024-05-02 13:44:35.966] [DET_logger] [info] wireless-SSID: voyance
+[2024-05-02 13:44:35.966] [DET_logger] [info] wireless-Pass-Phrase: 123456789
+[2024-05-02 13:44:35.966] [DET_logger] [info] wl mode: access-point
+[2024-05-02 13:44:38.668] [DET_logger] [info] Switched to Access Point Mode.
+[2024-05-02 13:46:08.316] [DET_logger] [info] Buffer: cmd1
+
+[2024-05-02 13:46:08.316] [DET_logger] [info] bytesRead: 4
+[2024-05-02 13:46:10.316] [DET_logger] [info] Received JSON data:
+:Uw
+[2024-07-08 07:15:52.951] [basic_logger] [info] Mongoose version : v7.12
+[2024-07-08 07:15:52.951] [basic_logger] [info] Listening on     : http://0.0.0.0:9000
+[2024-07-08 07:15:52.951] [basic_logger] [info] Web root         : [/home/root]
+[2024-07-08 07:15:52.951] [basic_logger] [info] Upload dir       : [/home/root]
+[2024-07-08 07:16:02.166] [basic_logger] [info] Received request for: /login
+[2024-07-08 07:16:02.167] [basic_logger] [info] Username from file: admin, Password from file: 123
+[2024-07-08 07:16:02.167] [basic_logger] [info] Username from input: , Password from input: 
+[2024-07-08 07:16:02.167] [basic_logger] [info] GET /login 0 -> 3 401 Unauthorized
+Content-Length: 12         
+
+Unauthorized
+[2024-07-08 07:16:02.336] [basic_logger] [info] Received request for: /favicon.ico
+[2024-07-08 07:16:02.336] [basic_logger] [info] GET /favicon.ico 0 -> 3 404 Not Found
+Content-Length: 10         
+
+Not found
+
+[2024-07-08 07:16:03.456] [basic_logger] [info] Received request for: /login
+[2024-07-08 07:16:03.457] [basic_logger] [info] Username from file: admin, Password from file: 123
+[2024-07-08 07:16:03.457] [basic_logger] [info] Username from input: , Password from input: 
+[2024-07-08 07:16:03.457] [basic_logger] [info] GET /login 0 -> 3 401 Unauthorized
+Content-Length: 12         
+
+Unauthorized
+[2024-07-08 07:16:03.905] [basic_logger] [info] Received request for: /login
+[2024-07-08 07:16:03.905] [basic_logger] [info] Username from file: admin, Password from file: 123
+[2024-07-08 07:16:03.905] [basic_logger] [info] Username from input: , Password from input: 
+[2024-07-08 07:16:03.905] [basic_logger] [info] GET /login 0 -> 3 401 Unauthorized
+Content-Length: 12         
+
+Unauthorized
+[2024-07-08 07:16:06.438] [basic_logger] [info] Received request for: /
+[2024-07-08 07:16:06.438] [basic_logger] [info] GET / 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:09.946] [basic_logger] [info] Received request for: /login
+[2024-07-08 07:16:09.946] [basic_logger] [info] Username from file: admin, Password from file: 123
+[2024-07-08 07:16:09.946] [basic_logger] [info] Username from input: admin, Password from input: 123
+[2024-07-08 07:16:09.946] [basic_logger] [info] POST /login 27 -> 3 200 OK
+Content-Type: text/html; charset=utf-8
+Etag: "1709475187.2035"
+Content-Length: 2035
+
+
+[2024-07-08 07:16:10.119] [basic_logger] [info] Received request for: /main.css
+[2024-07-08 07:16:10.119] [basic_logger] [info] GET /main.css 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:11.282] [basic_logger] [info] Received request for: /settings.html
+[2024-07-08 07:16:11.282] [basic_logger] [info] GET /settings.html 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:11.341] [basic_logger] [info] Received request for: /main.css
+[2024-07-08 07:16:11.341] [basic_logger] [info] GET /main.css 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:11.526] [basic_logger] [info] Received request for: /data.json
+[2024-07-08 07:16:11.526] [basic_logger] [info] GET /data.json 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:11.641] [basic_logger] [info] Received request for: /settings.html
+[2024-07-08 07:16:11.641] [basic_logger] [info] GET /settings.html 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:11.661] [basic_logger] [info] Received request for: /main.css
+[2024-07-08 07:16:11.661] [basic_logger] [info] GET /main.css 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:11.779] [basic_logger] [info] Received request for: /data.json
+[2024-07-08 07:16:11.779] [basic_logger] [info] GET /data.json 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:12.041] [basic_logger] [info] Received request for: /settings.html
+[2024-07-08 07:16:12.041] [basic_logger] [info] GET /settings.html 0 -> 3 304 Not Modified
+Content-Length: 0          
+
+
+[2024-07-08 07:16:12.111] [basic_logger] [info] Received request for: /main.css
+[2024-07-08 07:16:12.111] [basic_logger] 

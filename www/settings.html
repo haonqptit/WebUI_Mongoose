@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="icon" href="logo.jpg" type="image">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .notification {
+            position: fixed;
+            top: 83%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000; 
+        }
+        .wireless-settings input[type="text"].access-point {
+            border: none;
+            outline: none;
+            color: black;
+            font-size: 16px;
+            background: transparent;
+        }
+        .container {
+            width: 80vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Chiều cao của toàn bộ trang */
+        }
+        .ip-settings {
+            display: none; /* Ẩn phần tử khi chưa chọn */
+        }
+        .styled {
+            color: black;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+        .styled-wireless {
+            color: black;
+            font-size: 16px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Control Panel</h1>
+        <ul>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="change_password.html">Change Password</a></li>
+            <li><a href="update_firmware.html">Update Firmware</a></li>
+            <li><a href="information.html">Information</a></li>
+            <li><a href="logfile.html">LogFile</a></li>
+            <li><a href="update_country_codes.html">Update Country Codes</a></li>
+            <li><a href="factory_image.html">Factory Image</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div>
+            <form action="/update" method="post">
+                <p><strong>Network Settings</strong></p>
+                <div>
+                    <div style="display: inline-block;">
+                        <label for="ip-address">IP Address:</label>
+                        <input type="text" id="ip-address-ap" name="ip-address-ap" value="192.168.10.1" readonly style="display: none; border: none; outline: none;" class="styled">
+                        <br>
+                        <select id="ip-select" name="ip-select" >
+                            <!-- style="display: none;" -->
+                            <option value="auto" >Auto</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </div>
+                    <input type="text" id="ip-address-manual" name="ip-address-manual" pattern="(?:[0-9]{1,3}\.){3}[0-9]{1,3}" title="Enter a valid IP address" style="display: none;" placeholder="ip-address" class="styled-wireless">
+                    <input type="text" id="gateway-manual" name="gateway-manual" style="display: none;" placeholder = "Gateway" class="styled-wireless">
+                    <input type="text" id="dns-manual" name="dns-manual" style="display: none;" placeholder="DNS" class="styled-wireless">
+                </div>
+    
+                <p><strong>Logging Settings</strong></p>
+                <label for="logging-level">Logging Level:</label>
+                <select id="logging-level" name="logging-level">
+                    <option value="debug">Debug</option>
+                    <option value="info">Info</option>
+                    <option value="warning">Warning</option>
+                    <option value="error">Error</option>
+                </select>
+    
+                <p><strong>Wireless Settings</strong></p>
+                <label>Wireless Mode:</label>
+
+                <input type="radio" id="station" name="wireless-mode" value="station">
+                <label for="station">Station</label>
+                <input type="radio" id="access-point" name="wireless-mode" value="access-point">
+                <label for="access-point">Access Point</label>
+
+                <div class="wireless-settings">
+                    <p>Valid SSID and Pass Phrase characters are 0-9,A-Z,a-z,!#%+,-,.?[]^_}</p>
+                    <br>
+                    <label for="wireless-SSID">Wireless SSID:</label>
+                    <input type="text" id="wireless-SSID" name="wireless-SSID" class="styled-wireless">
+                    <br>
+                    <label for="wireless-Pass-Phrase">Wireless Pass Phrase:</label>
+                    <input type="text" id="wireless-Pass-Phrase" name="wireless-Pass-Phrase" class="styled-wireless">
+                    <br>
+                </div>
+                <button class="btnUpdate" type="submit" name="update-button">Update</button>
+            </form>
+            <br> 
+        </div>
+        <div id="notification" class="notification"></div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var wirelessModeRadio = document.getElementsByName('wireless-mode');
+            var ipSelect = document.getElementById('ip-select');
+            var ipAddressManualInput = document.getElementById('ip-address-manual');
+            var gateway = document.getElementById('gateway-manual');
+            var dns = document.getElementById('dns-manual');
+            var ipAddressAPInput = document.getElementById('ip-address-ap');
+            var wirelessSettings = document.querySelector('.wireless-settings');
+            var wirelessSSIDInput = document.getElementById('wireless-SSID');
+            var wirelessPassPhraseInput = document.getElementById('wireless-Pass-Phrase');
+    
+            function updateSettingsVisibility() {
+                var selectedMode;
+                wirelessModeRadio.forEach(radio => {
+                    if (radio.checked) {
+                        selectedMode = radio.value;
+                    }
+                });
+    
+                if (selectedMode === 'station') {
+
+                    wirelessSSIDInput.value = '';
+                    wirelessPassPhraseInput.value = '';
+                    ipSelect.style.display = 'block';
+                    wirelessSettings.style.display = 'block';
+                    ipAddressAPInput.style.display = 'none';
+                    ipAddressManualInput.style.display = ipSelect.value === 'manual' ? 'block' : 'none';
+                    gateway.style.display = ipSelect.value === 'manual' ? 'block' : 'none';
+                    dns.style.display = ipSelect.value === 'manual' ? 'block' : 'none';
+                    wirelessSSIDInput.classList.remove('access-point');
+                    wirelessPassPhraseInput.classList.remove('access-point');
+                    wirelessSSIDInput.readOnly = false;
+                    wirelessPassPhraseInput.readOnly = false;
+
+                } else if (selectedMode === 'access-point') {
+
+                    wirelessSSIDInput.value = 'voyance';
+                    wirelessPassPhraseInput.value = '123456789';
+                    ipSelect.style.display = 'none';
+                    ipAddressManualInput.style.display = 'none';
+                    gateway.style.display = 'none';
+                    dns.style.display = 'none';
+                    ipAddressAPInput.style.display = 'block';
+                    wirelessSettings.style.display = 'block';
+                    wirelessSSIDInput.classList.add('access-point');
+                    wirelessPassPhraseInput.classList.add('access-point');
+                    wirelessSSIDInput.readOnly = true;
+                    wirelessPassPhraseInput.readOnly = true;
+                }
+            }
+    
+            wirelessModeRadio.forEach(function (radio) {
+                radio.addEventListener('change', updateSettingsVisibility);
+            });
+    
+            ipSelect.addEventListener('change', function() {
+                ipAddressManualInput.style.display = ipSelect.value === 'manual' ? 'block' : 'none';
+                gateway.style.display = ipSelect.value === 'manual' ? 'block' : 'none';
+                dns.style.display = ipSelect.value === 'manual' ? 'block' : 'none';
+            });
+    
+            updateSettingsVisibility(); // Set initial visibility based on default checked radio
+    
+            fetch('configuration.json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip-address-manual').value = data.settingsSTA['ip-address'];
+                    document.getElementById('logging-level').value = data.settingsSTA['logging-level'];
+                    document.getElementById('wireless-SSID').value = data.settingsSTA['wireless-SSID'];
+                    document.getElementById('wireless-Pass-Phrase').value = data.settingsSTA['wireless-Pass-Phrase'];
+
+                    if (data.settingsSTA['wireless-mode'] === 'station' && data.settingsSTA.status === 'active') {
+
+                        document.getElementById('station').checked = true;
+                        wirelessSSIDInput.value = settingsSTA['wireless-SSID'];
+                        wirelessPassPhraseInput.value = settingsSTA['wireless-Pass-Phrase'];
+                        document.getElementById('ip-select').value = data.settingsSTA['auto'] === 'true' ? 'auto' : 'manual';
+
+                    } else if (data.settingsAP['wireless-mode'] === 'access-point' && data.settingsAP.status === 'active' ) {
+                        document.getElementById('access-point').checked = true;
+                    }
+    
+                    updateSettingsVisibility();
+                });
+        });
+    </script>
+</body>
+</html>

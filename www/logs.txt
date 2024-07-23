@@ -1,0 +1,5 @@
+[2024-07-09 15:22:35.586] [basic_logger] [info] Mongoose version : v7.12
+[2024-07-09 15:22:35.586] [basic_logger] [info] Listening on     : http://0.0.0.0:9000
+[2024-07-09 15:22:35.586] [basic_logger] [info] Web root         : [/home/root]
+[2024-07-09 15:22:35.586] [basic_logger] [info] Upload dir       : [/home/root]
+[2024-07-09 15:22:36.808] [basic_logger] [info] Exiting on signal 2
