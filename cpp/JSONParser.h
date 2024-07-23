@@ -8,6 +8,7 @@
 #include "Information.h"
 #include "Configuration.h"
 
+
 class JSONParser {
 public:
     JSONParser();
@@ -26,4 +27,4 @@ private:
     void setNestedStringValue(struct json_object* parsed_json, const std::string& objectKey, const std::string& key, const std::string& value);
 };
 
-#endif // JSONPARSER_H
+#endif 
