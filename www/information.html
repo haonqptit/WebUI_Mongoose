@@ -67,6 +67,7 @@
             <li><strong>FPGA Version:</strong> <span id="fpga_version"></span></li>
             <li><strong>Model:</strong> <span id="model"></span></li>
             <li><strong>Serial Number:</strong> <span id="serial_number"></span></li>
+            <li><strong>Mac address:</strong> <span id="mac_address"></span></li>
         </ul>
     </div>
 
@@ -83,13 +84,14 @@
                 var fpgaVersion = document.getElementById('fpga_version');
                 var model = document.getElementById('model');
                 var serialNumber = document.getElementById('serial_number');
-
+                var macAddress = document.getElementById('mac_address');
                 // Điền thông tin từ JSON vào các phần tử HTML tương ứng
                 hardwareVersion.textContent = jsonData.information.hardware_version;
                 softwareVersion.textContent = jsonData.information.software_version;
                 fpgaVersion.textContent = jsonData.information.fpga_version;
                 model.textContent = jsonData.information.model;
                 serialNumber.textContent = jsonData.information.serial_number;
+                macAddress.textContent = jsonData.information.macAddress;
             }
         };
         xhr.open("GET", "information.json", true);
