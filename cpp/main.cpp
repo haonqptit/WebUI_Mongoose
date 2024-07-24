@@ -168,7 +168,7 @@ int main(int argc, char *argv[]) {
 	int n_retry = 3;
 	int ret = 0;
 	// settings.Loading_Logger(file_logger);
-	for(int i =0 ; i ++; i < n_retry){
+	for(int i =0 ; i < n_retry; i ++){
 		ret = settings.initializeJson();
 		if(ret==0)
 			break;
