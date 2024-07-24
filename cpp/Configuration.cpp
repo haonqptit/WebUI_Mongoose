@@ -1,13 +1,13 @@
 #include "Configuration.h"
 void Configuration::validateNotEmpty(const std::string& value, const std::string& fieldName) const {
     if (value.empty()) {
-        throw std::invalid_argument(fieldName + " cannot be empty");
+      ///  throw std::invalid_argument(fieldName + " cannot be empty");
     }
 }
 
 void Configuration::validateIpAddress(const std::string& ipAddress, const std::string& fieldName) const {
     if (ipAddress.empty()) {
-        throw std::invalid_argument(fieldName + " cannot be empty");
+     ///   throw std::invalid_argument(fieldName + " cannot be empty");
     }
     // Additional IP address validation can be added here
 }
