@@ -39,7 +39,7 @@ NetworkManagerWrapper::~NetworkManagerWrapper() {
 
 bool NetworkManagerWrapper::scanForSSID() {
     const int max_retries = 5;
-    const int sleep_duration_ms = 2000;  // 2 seconds
+    const int sleep_duration_ms = 1500;  // 2 seconds
 
     for (int i = 0; i < max_retries; ++i) {
         NMDevice* device = nm_client_get_device_by_iface(client_, iface_name_.c_str());
@@ -366,7 +366,7 @@ bool NetworkManagerWrapper::isValidIPAddress(const std::string& ip_address) {
 
 bool NetworkManagerWrapper::isSSIDConnected() {
     const int max_retries = 10;
-    const int sleep_duration_ms = 1000;  // 1 second
+    const int sleep_duration_ms = 100;  // 1 second
 
     for (int i = 0; i < max_retries; ++i) {
         const GPtrArray* active_connections = nm_client_get_active_connections(client_);
