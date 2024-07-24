@@ -17,6 +17,7 @@
 
 
 #define FILE_NAME_INFOMATION "/home/root/www/information.json"
+std::shared_ptr<spdlog::logger> file_logger = spdlog::stdout_color_mt("nm_logger");
 
 // Static variables
 static int s_debug_level = MG_LL_INFO;
@@ -27,15 +28,24 @@ static const char *s_ssi_pattern = ".html";
 static const char *s_upload_dir = "/home/root/www";
 static int s_signo;
 
+
+
 // Signal handler
 static void signal_handler(int signo) {
     s_signo = signo;
 }
 
 // Event handler for HTTP connection
-static void cb(struct mg_connection *c, int ev, void *ev_data) {
-	Settings settings;
-	JSONParser parser;
+static void cb(struct mg_connection *c, int ev, void *ev_data,  void *fn_data) {
+//	Settings settings(file_logger);
+//	Settings *server_ =static_cast<Settings*>(fn_data); // Cast void* back to class instance
+	Settings settings_(file_logger);
+//    if (!server_) {
+//    	spdlog::error("Invalid server instance in handleEvent");
+//        return;
+//    }
+
+	JSONParser parser = settings_.parser;
 	Information info = parser.parseInformation(FILE_NAME_INFOMATION);
     if (ev == MG_EV_HTTP_MSG) {
         struct mg_http_message *hm = (struct mg_http_message *)ev_data;
@@ -49,7 +59,7 @@ static void cb(struct mg_connection *c, int ev, void *ev_data) {
             mg_http_get_var(&hm->body, "username", username, sizeof(username));
             mg_http_get_var(&hm->body, "password", password, sizeof(password));
 
-            if (settings.compareUsernamePassword(username,password) == 0) {
+            if (settings_.compareUsernamePassword(username,password) == 0) {
                 struct mg_http_serve_opts opts = {0};
                 opts.root_dir = s_root_dir;
 //                mg_http_serve_file(c, hm, info.getHomePath().c_str(), &opts);
@@ -75,18 +85,18 @@ static void cb(struct mg_connection *c, int ev, void *ev_data) {
 			spdlog::info("ip-select: {}",ip_select);
 
 			if(strcmp(wireless_mode,"station") == 0) {
-				settings.updateDataJsonSTA(ip_address,logging_level,wireless_mode,wireless_SSID,wireless_passphrase,ip_select);
-				int ret = settings.switchToSTAMode(wireless_SSID,wireless_passphrase,ip_address,gateway,dns,ip_select);
+				settings_.updateDataJsonSTA(ip_address,logging_level,wireless_mode,wireless_SSID,wireless_passphrase,ip_select);
+				int ret = settings_.switchToSTAMode(wireless_SSID,wireless_passphrase,ip_address,gateway,dns,ip_select);
 				if(ret != 0) {
-					int swicth = settings.switchToAPMode();
+					int swicth = settings_.switchToAPMode();
 					if(swicth != 0) {
-						settings.switchToAPMode();
+						settings_.switchToAPMode();
 					}
 				}
 			}
 			else {
-				settings.updateDataJsonAp();
-				settings.switchToAPMode();
+				settings_.updateDataJsonAp();
+				settings_.switchToAPMode();
 			}
 			struct mg_http_serve_opts opts = {0};
 			opts.root_dir = s_root_dir;
@@ -95,7 +105,7 @@ static void cb(struct mg_connection *c, int ev, void *ev_data) {
 
         	char password[100];
 			mg_http_get_var(&hm->body, "new_password", password, sizeof(password));
-			settings.updatePasswordJson(password);
+			settings_.updatePasswordJson(password);
 			mg_http_reply(c, 200, "", "<html><head><script>alert('Password changed successfully!'); window.location.href = 'change_password.html';</script></head><body></body></html>");
         } else if (mg_http_match_uri(hm, "/upload")) {
             // Handle /upload
@@ -128,9 +138,9 @@ static void cb(struct mg_connection *c, int ev, void *ev_data) {
             opts.ssi_pattern = s_ssi_pattern;
             mg_http_serve_dir(c, hm, &opts);
         }
-        spdlog::info("{} {} {} -> {} {}", std::string(hm->method.ptr, hm->method.len),
-                     std::string(hm->uri.ptr, hm->uri.len), hm->body.len, 3, c->send.buf + 9,
-                     c->send.len);
+ //       spdlog::info("{} {} {} -> {} {}", std::string(hm->method.ptr, hm->method.len),
+ //                    std::string(hm->uri.ptr, hm->uri.len), hm->body.len, 3, c->send.buf + 9,
+ //                    c->send.len);
     }
 }
 
@@ -150,14 +160,23 @@ static void usage(const char *prog) {
     exit(EXIT_FAILURE);
 }
 
+
+
 int main(int argc, char *argv[]) {
 
-	auto file_logger = spdlog::stdout_color_mt("nm_logger");
 	Settings settings(file_logger);
-
-	int ret = settings.initializeJson();
+	int n_retry = 3;
+	int ret = 0;
+	// settings.Loading_Logger(file_logger);
+	for(int i =0 ; i ++; i < n_retry){
+		ret = settings.initializeJson();
+		if(ret==0)
+			break;
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	}
 
 	if(ret != 0) {
+		  std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 		settings.switchToAPMode();
 	}
     char path[MG_PATH_MAX] = ".";
@@ -190,7 +209,7 @@ int main(int argc, char *argv[]) {
     signal(SIGTERM, signal_handler);
     mg_log_set(s_debug_level);
     mg_mgr_init(&mgr);
-    if ((c = mg_http_listen(&mgr, s_listening_address, cb, &mgr)) == NULL) {
+    if ((c = mg_http_listen(&mgr, s_listening_address, cb, (void*)&settings)) == NULL) {
         spdlog::error("Cannot listen on {}. Use http://ADDR:PORT or :PORT", s_listening_address);
         exit(EXIT_FAILURE);
     }
