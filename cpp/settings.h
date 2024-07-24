@@ -23,11 +23,15 @@ private:
     std::string wireless_mode;
     std::string wireless_ssid;
     std::string wireless_pass_phrase;
-    std::shared_ptr<spdlog::logger> logger_;
-    JSONParser parser;
+
+
 
 public:
+    JSONParser parser;
+    std::shared_ptr<spdlog::logger> logger_;
+    ~Settings();
     Settings(std::shared_ptr<spdlog::logger> logger = nullptr);
+    void Loading_Logger(std::shared_ptr<spdlog::logger> logger);
     int switchToSTAMode(const std::string& ssid, const std::string& password, const std::string& static_ip, const std::string& gateway, const std::string& dns, const std::string& mode);
     int switchToAPMode();
     int initializeJson();
