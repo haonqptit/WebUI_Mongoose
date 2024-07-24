@@ -193,18 +193,21 @@
                     document.getElementById('logging-level').value = data.settingsSTA['logging-level'];
                     document.getElementById('wireless-SSID').value = data.settingsSTA['wireless-SSID'];
                     document.getElementById('wireless-Pass-Phrase').value = data.settingsSTA['wireless-Pass-Phrase'];
-
+                    document.getElementById('gateway-manual').value = data.settingsSTA['gateway'];
+                    document.getElementById('dns-manual').value = data.settingsSTA['dns'];
                     if (data.settingsSTA['wireless-mode'] === 'station' && data.settingsSTA.status === 'active') {
 
                         document.getElementById('station').checked = true;
                         wirelessSSIDInput.value = settingsSTA['wireless-SSID'];
                         wirelessPassPhraseInput.value = settingsSTA['wireless-Pass-Phrase'];
                         document.getElementById('ip-select').value = data.settingsSTA['auto'] === 'true' ? 'auto' : 'manual';
+                        gateway.value =  settingsSTA['gateway'];
+                        dns.value = data.settingsSTA['dns'];
 
                     } else if (data.settingsAP['wireless-mode'] === 'access-point' && data.settingsAP.status === 'active' ) {
                         document.getElementById('access-point').checked = true;
                     }
-    
+
                     updateSettingsVisibility();
                 });
         });
